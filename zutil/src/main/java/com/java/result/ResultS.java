@@ -72,12 +72,16 @@ public class ResultS<T> {
         return new ResultS<T>(ResultStatus.OK, data);
     }
 
+    public static <T> ResultS<T> success(String msg) {
+        return new ResultS<T>(msg, ResultStatus.OK.getResultCode());
+    }
+
     public static <T> ResultS<T> success(String msg, T data) {
         return new ResultS<T>(msg, ResultStatus.OK.getResultCode(), data);
     }
 
-    public static <T> ResultS<T> success(String msg) {
-        return new ResultS<T>(msg, ResultStatus.OK.getResultCode());
+    public static <T> ResultS<T> success(Integer code, String msg, T data) {
+        return new ResultS<T>(msg, code, data);
     }
 
     public static <T> ResultS<T> fail() {
@@ -88,11 +92,17 @@ public class ResultS<T> {
         return new ResultS<T>(ResultStatus.FAIL, data);
     }
 
+    public static <T> ResultS<T> fail(String msg) {
+        return new ResultS<T>(msg, ResultStatus.FAIL.getResultCode());
+    }
+
     public static <T> ResultS<T> fail(String msg, T data) {
         return new ResultS<T>(msg, ResultStatus.FAIL.getResultCode(), data);
     }
 
-    public static <T> ResultS<T> fail(String msg) {
-        return new ResultS<T>(msg, ResultStatus.FAIL.getResultCode());
+    public static <T> ResultS<T> fail(Integer code, String msg, T data) {
+        return new ResultS<T>(msg, code, data);
     }
+
+
 }

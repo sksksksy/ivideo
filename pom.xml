@@ -12,8 +12,8 @@
     <modules>
         <module>model</module>
         <module>gateway</module>
-        <module>video-manage</module>
-        <module>videoInfo-manage</module>
+        <module>video-manage-web</module>
+        <module>video-manage-webflux</module>
         <module>zutil</module>
         <module>services</module>
     </modules>

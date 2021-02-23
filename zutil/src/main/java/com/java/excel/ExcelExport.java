@@ -1,12 +1,13 @@
 package com.java.excel;
 
 import com.java.excel.impl.AbstractDefaultTransfer;
+import com.java.exception.BaseRunException;
+import com.java.tool.ObjectTools;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * excel export util.but not prefect.
@@ -25,6 +28,7 @@ public final class ExcelExport extends AbstractDefaultTransfer {
     private final String PREFIX = "[*]";
     private Workbook workbook = null;
     private ExcelTransfer transfer = null;
+    private FExcelTransfer fTransfer = null;
 
     public enum ExcelType {
         XSSF, HSSF
@@ -48,6 +52,10 @@ public final class ExcelExport extends AbstractDefaultTransfer {
         this.transfer = excelTransfer;
     }
 
+    public <T> void setFTransfer(FExcelTransfer<T> fTransfer) {
+        this.fTransfer = fTransfer;
+    }
+
     /**
      * get Workbook object
      *
@@ -57,6 +65,41 @@ public final class ExcelExport extends AbstractDefaultTransfer {
     public <T> Workbook getXlsData(TableData<T> excelData) {
         List<List<String>> dataList = ObjectToList(excelData);
         return getXlsData(dataList);
+    }
+
+    /**
+     * map数据结构转为Excel
+     *
+     * @param list
+     * @return
+     */
+    public Workbook getXlsDataOfMap(List<Map<String, String>> list) {
+        if (workbook == null) init();
+        if (ObjectTools.collectionIsEmpty(list) && ObjectTools.mapIsEmpty(list.get(0))) {
+            BaseRunException.throwException("传入的excel原始数据为空");
+        }
+        int rows = list.size();
+        int cols = list.get(0).size();
+        Sheet sheet = workbook.createSheet("sheet1");
+        sheet.setDefaultColumnWidth(18);//设置列宽
+        AtomicInteger r = new AtomicInteger(0);
+        list.parallelStream().forEach(map -> {
+            Row row = sheet.createRow(r.get());
+            AtomicInteger c = new AtomicInteger(0);
+            map.forEach((k, v) -> {
+                Cell cell = row.createCell(c.get(), Cell.CELL_TYPE_BLANK);
+                RichTextString text = null;
+                if (workbook instanceof HSSFWorkbook) {
+                    text = new HSSFRichTextString(v);
+                } else if (workbook instanceof XSSFWorkbook) {
+                    text = new XSSFRichTextString(v);
+                }
+                cell.setCellValue(text);
+                c.incrementAndGet();
+            });
+            r.incrementAndGet();
+        });
+        return workbook;
     }
 
     /**
@@ -78,11 +121,11 @@ public final class ExcelExport extends AbstractDefaultTransfer {
             for (int c = 0; c < cols; c++) {
                 cell = row.createCell(c, Cell.CELL_TYPE_BLANK);
                 String s = dataList.get(r).get(c);
-                RichTextString text=null;
+                RichTextString text = null;
                 if (workbook instanceof HSSFWorkbook) {
                     text = new HSSFRichTextString(s);
-                }else if(workbook instanceof XSSFWorkbook){
-                    text=new XSSFRichTextString(s);
+                } else if (workbook instanceof XSSFWorkbook) {
+                    text = new XSSFRichTextString(s);
                 }
                 cell.setCellValue(text);
             }
@@ -103,7 +146,11 @@ public final class ExcelExport extends AbstractDefaultTransfer {
         if (null == transfer) {
             dataList = super.transfer(excelData);
         } else {
-            dataList = this.transfer.transfer(excelData);
+            if (fTransfer != null) {
+                dataList = this.fTransfer.transfer(excelData);
+            } else {
+                dataList = this.transfer.transfer(excelData);
+            }
         }
         return dataList;
     }
@@ -137,12 +184,12 @@ public final class ExcelExport extends AbstractDefaultTransfer {
             row = sheet.createRow(r);
             for (int c = 0; c < cols; c++) {
                 cell = row.createCell(c, Cell.CELL_TYPE_BLANK);
-                String s=dataList.get(r).get(c);
-                RichTextString text=null;
+                String s = dataList.get(r).get(c);
+                RichTextString text = null;
                 if (workbook instanceof HSSFWorkbook) {
                     text = new HSSFRichTextString(s);
-                }else if(workbook instanceof XSSFWorkbook){
-                    text=new XSSFRichTextString(s);
+                } else if (workbook instanceof XSSFWorkbook) {
+                    text = new XSSFRichTextString(s);
                 }
                 cell.setCellValue(text);
             }

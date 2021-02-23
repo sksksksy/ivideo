@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 
 import java.io.*;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * 关于Object的工具集合
@@ -66,5 +67,32 @@ public abstract class ObjectTools {
             throw new NullPointerException(message);
         }
         return collection;
+    }
+
+    /**
+     * 校验一个集合是否为空
+     *
+     * @return
+     */
+    public static <E> boolean collectionIsEmpty(Collection<E> collection) {
+        if (collection == null) {
+            return true;
+        }
+        return collection.isEmpty();
+    }
+
+    /**
+     * 判断map是否为空
+     *
+     * @param map
+     * @param <K>
+     * @param <V>
+     * @return
+     */
+    public static <K, V> boolean mapIsEmpty(Map<K, V> map) {
+        if (map == null) {
+            return true;
+        }
+        return map.isEmpty();
     }
 }

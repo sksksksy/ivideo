@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class JwtParam {
     /**
-     * 写在http请求或响应头中的
+     * 写在http请求或响应头中的名字
      */
     private String tokenHeader;
     /**
