@@ -17,4 +17,8 @@ public class VideoPrivilegeDao {
      * 创建时间
      */
     private Date createTime;
+    /**
+     * 视频权限
+     */
+    private String privilege;
 }

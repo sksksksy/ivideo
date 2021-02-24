@@ -3,6 +3,8 @@ package com.java.tool;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.zip.ZipOutputStream;
 
 /**
  * IO相关工具类
@@ -10,6 +12,11 @@ import java.io.OutputStream;
  * @author zhoup
  */
 public class IoTools {
+    public static void compressOfZipForStream(Iterable<InputStream> ins, List<String> names, OutputStream out) {
+        ZipOutputStream zipOutputStream = new ZipOutputStream(out);
+//        ins.forEach();
+    }
+
     /**
      * 关闭输出流
      *

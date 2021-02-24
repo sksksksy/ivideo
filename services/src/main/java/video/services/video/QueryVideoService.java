@@ -5,9 +5,9 @@ import video.manage.model.domain.dto.request.BaseQuery;
 import video.manage.model.domain.entity.VideoEntity;
 
 /**
- * 视频服务类
+ * 查询视频服务类
  */
-public interface VideoService {
+public interface QueryVideoService {
     /**
      * 获取单个基本视频信息
      *
@@ -31,4 +31,12 @@ public interface VideoService {
      * @return
      */
     Page<VideoEntity> getAllVideoOfView(BaseQuery query);
+
+    /**
+     * 按名字搜索视频
+     *
+     * @param query
+     * @return
+     */
+    Page<VideoEntity> searchVideoByName(BaseQuery query);
 }

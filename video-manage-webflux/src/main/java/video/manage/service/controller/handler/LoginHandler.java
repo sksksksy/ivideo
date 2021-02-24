@@ -10,12 +10,12 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 import video.manage.model.domain.dto.request.BaseQuery;
 import video.manage.model.domain.entity.VideoEntity;
-import video.services.video.VideoService;
+import video.services.video.QueryVideoService;
 
 @Component
 public class LoginHandler {
     @Autowired
-    VideoService videoService;
+    QueryVideoService videoService;
 
     /**
      * 登录请求
