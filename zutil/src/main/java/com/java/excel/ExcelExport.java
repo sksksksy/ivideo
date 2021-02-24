@@ -130,7 +130,6 @@ public final class ExcelExport extends AbstractDefaultTransfer {
                 cell.setCellValue(text);
             }
         }
-        //save file
         return workbook;
     }
 
@@ -144,13 +143,13 @@ public final class ExcelExport extends AbstractDefaultTransfer {
     public <T> List<List<String>> ObjectToList(TableData<T> excelData) {
         List<List<String>> dataList = null;
         if (null == transfer) {
-            dataList = super.transfer(excelData);
-        } else {
             if (fTransfer != null) {
                 dataList = this.fTransfer.transfer(excelData);
             } else {
-                dataList = this.transfer.transfer(excelData);
+                dataList = super.transfer(excelData);
             }
+        } else {
+            dataList = this.transfer.transfer(excelData);
         }
         return dataList;
     }
