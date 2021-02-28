@@ -1,7 +1,7 @@
 package com.java.jwt;
 
 
-import com.java.string.StringCheck;
+import com.java.tool.string.StringCheck;
 import com.java.tool.ClassTools;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

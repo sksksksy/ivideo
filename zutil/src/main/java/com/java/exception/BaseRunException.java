@@ -69,14 +69,14 @@ public class BaseRunException extends RuntimeException {
     }
 
     /**
-     * 判断，如果传入的status为false则抛出异常
+     * 判断，如果传入的status为ture则抛出异常
      *
      * @param status
      * @param code
      * @param message
      */
     public static void check(boolean status, Integer code, String message) {
-        if (!status) {
+        if (status) {
             throw new BaseRunException(code, message);
         }
     }
@@ -101,7 +101,8 @@ public class BaseRunException extends RuntimeException {
     public static <T> void check(Predicate<T> predicate, T param, String message) {
         check(!predicate.test(param), null, message);
     }
-    public Integer getCode(){
+
+    public Integer getCode() {
         return this.code;
     }
 }

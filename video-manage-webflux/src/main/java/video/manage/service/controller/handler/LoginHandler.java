@@ -1,7 +1,7 @@
 package video.manage.service.controller.handler;
 
 import com.java.result.ResultS;
-import com.java.tool.RequestTools;
+import com.java.spring.utils.RequestTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

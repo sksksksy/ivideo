@@ -1,9 +1,11 @@
 package com.java.tool;
 
+import com.java.exception.BaseRunException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -12,9 +14,27 @@ import java.util.zip.ZipOutputStream;
  * @author zhoup
  */
 public class IoTools {
-    public static void compressOfZipForStream(Iterable<InputStream> ins, List<String> names, OutputStream out) {
-        ZipOutputStream zipOutputStream = new ZipOutputStream(out);
-//        ins.forEach();
+    /**
+     * 压缩文件
+     * @param inputStream 文件输入流
+     * @param outputStream 文件输出流
+     * @param name 文件名
+     */
+    public static void compressOfZipForStream(InputStream inputStream, OutputStream outputStream, String name) {
+        ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
+        try {
+            zipOutputStream.putNextEntry(new ZipEntry(name));
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = inputStream.read(buffer)) != -1) {
+                zipOutputStream.write(buffer, 0, len);
+            }
+            zipOutputStream.closeEntry();
+        } catch (IOException e) {
+            BaseRunException.throwException("导出压缩包流失败。", e);
+        } finally {
+            shutdownOutputStream(zipOutputStream);
+        }
     }
 
     /**

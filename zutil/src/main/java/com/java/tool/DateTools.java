@@ -1,6 +1,6 @@
 package com.java.tool;
 
-import com.java.string.StringCheck;
+import com.java.tool.string.StringCheck;
 
 import javax.annotation.Nonnull;
 import java.text.SimpleDateFormat;

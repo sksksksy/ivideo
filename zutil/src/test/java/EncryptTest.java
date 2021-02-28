@@ -1,4 +1,4 @@
-import com.java.encrypt.EncryptUtils;
+import com.java.tool.encrypt.EncryptUtils;
 
 public class EncryptTest {
     public static void main(String[] args) {

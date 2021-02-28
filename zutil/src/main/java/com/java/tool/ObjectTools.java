@@ -95,4 +95,16 @@ public abstract class ObjectTools {
         }
         return map.isEmpty();
     }
+
+    /**
+     * 序列化方式克隆
+     *
+     * @param t
+     * @param <T>
+     * @return
+     */
+    public static <T extends Serializable> T deepCopy(T t) {
+        byte[] bytes = toArray(t);
+        return (T) toObject(t.getClass(), bytes);
+    }
 }
