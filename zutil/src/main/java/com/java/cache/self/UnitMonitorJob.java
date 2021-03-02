@@ -1,5 +1,6 @@
 package com.java.cache.self;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UnitMonitorJob implements Runnable {
@@ -7,10 +8,15 @@ public class UnitMonitorJob implements Runnable {
     public void run() {
         ICache cache = ICache.takeCache();
         //超时移除
-        ConcurrentHashMap<String, Unit> cacheMap = cache.getCache();
-        cacheMap.forEach((k, v) -> {
-            if (v.expired()) {
-                cacheMap.remove(k);
+        ConcurrentHashMap<String, List<Unit>> cacheMaps = cache.getCache();
+        cacheMaps.forEach((k, v) -> {
+            v.stream().forEach(e -> {
+                if (e.expired()) {
+                    v.remove(e);
+                }
+            });
+            if (v.isEmpty()) {
+                cacheMaps.remove(v);
             }
         });
     }

@@ -29,7 +29,6 @@ public class GlobalException implements ApplicationEventPublisherAware {
     public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         this.publisher = applicationEventPublisher;
     }
-
     void notifyConsumer(BaseRunException e) {
         Objects.requireNonNull(publisher, "ApplicationEventPublisher can't null.");
         publisher.publishEvent(new JavaExceptionEvent(this, e));

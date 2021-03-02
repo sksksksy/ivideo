@@ -64,8 +64,26 @@ public class BaseRunException extends RuntimeException {
         throw new BaseRunException(code, message, cause);
     }
 
+    /**
+     * 抛出异常
+     *
+     * @param message
+     * @param cause
+     */
     public static void throwException(String message, Throwable cause) {
         throwException(null, message, cause);
+    }
+
+    /**
+     * 检测是否为空，若为空则抛出异常
+     *
+     * @param obj
+     * @param message
+     */
+    public static void NotNull(Object obj, String message) {
+        if (obj == null) {
+            throwException(message);
+        }
     }
 
     /**

@@ -7,12 +7,12 @@ import java.io.Serializable;
  *
  * @author ZHP
  */
-public class Unit implements Serializable {
+public class Unit<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private String key;
-    private String value;
+    private T value;
     private int expire = 0;
     //unit second
     private transient long startTime = 0L;
@@ -40,11 +40,11 @@ public class Unit implements Serializable {
         this.key = key;
     }
 
-    public String getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
@@ -55,7 +55,9 @@ public class Unit implements Serializable {
     public void setExpire(int expire) {
 //		long nowTime=System.currentTimeMillis();
 //		this.startTime=nowTime/1000;
-        this.expire = expire;
+        if (expire != -1) {
+            this.expire = expire;
+        }
     }
 
     @Override

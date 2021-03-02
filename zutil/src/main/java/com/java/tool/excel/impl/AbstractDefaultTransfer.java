@@ -1,14 +1,13 @@
 package com.java.tool.excel.impl;
 
-
-
 import com.java.tool.excel.ExcelTransfer;
 import com.java.tool.excel.TableData;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public abstract class AbstractDefaultTransfer implements ExcelTransfer {
+public abstract class AbstractDefaultTransfer implements ExcelTransfer, Serializable {
     protected List<String> SKIP_LIST = null;
     protected boolean NotReadSupperClass = true;
 
