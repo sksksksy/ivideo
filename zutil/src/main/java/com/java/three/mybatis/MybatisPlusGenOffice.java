@@ -9,11 +9,16 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 官方提供的
+ */
+@Data
 public class MybatisPlusGenOffice {
     // 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
     String author = "";
@@ -143,7 +148,10 @@ public class MybatisPlusGenOffice {
         mpg.execute();
     }
 
-    public static void main(String[] args) {
+    /**
+     * 运行
+     */
+    public static void execute() {
         MybatisPlusGenOffice gen = new MybatisPlusGenOffice();
         gen.begin();
         System.out.println("生成完成。。。");
