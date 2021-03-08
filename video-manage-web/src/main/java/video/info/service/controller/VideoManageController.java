@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import video.manage.model.domain.dto.request.BaseQuery;
-import video.manage.model.domain.entity.VideoEntity;
+import video.manage.model.dto.request.QueryVideo;
+import video.manage.model.entity.VideoEntity;
 import video.services.video.QueryVideoService;
 
 @RestController
@@ -22,7 +22,7 @@ public class VideoManageController {
      * @return
      */
     @RequestMapping(value = "allVideoOfPersonUp", method = RequestMethod.GET)
-    ResultS<Page<VideoEntity>> queryAllVideoOfPersonUp(@RequestBody(required = false) BaseQuery query) {
+    ResultS<Page<VideoEntity>> queryAllVideoOfPersonUp(@RequestBody(required = false) QueryVideo query) {
         Page<VideoEntity> videos = queryVideo.getAllVideoOfPersonUp(query);
         return ResultS.success(videos);
     }
@@ -33,7 +33,7 @@ public class VideoManageController {
      * @return
      */
     @RequestMapping(value = "allVideoOfView", method = RequestMethod.GET)
-    ResultS<Page<VideoEntity>> queryAllVideoOfView(@RequestBody(required = false) BaseQuery query) {
+    ResultS<Page<VideoEntity>> queryAllVideoOfView(@RequestBody(required = false) QueryVideo query) {
         Page<VideoEntity> views = queryVideo.getAllVideoOfView(query);
         return ResultS.success(views);
     }
@@ -45,7 +45,7 @@ public class VideoManageController {
      * @return
      */
     @RequestMapping(value = "searchVideoByName", method = RequestMethod.GET)
-    ResultS<Page<VideoEntity>> queryVideo(@RequestBody(required = false) BaseQuery query) {
+    ResultS<Page<VideoEntity>> queryVideo(@RequestBody(required = false) QueryVideo query) {
         queryVideo.searchVideoByName(query);
         return ResultS.success();
     }

@@ -1,8 +1,8 @@
 package video.services.video.impl;
 
 import org.springframework.stereotype.Service;
-import video.manage.model.domain.dto.VideoBaseInfoDto;
-import video.manage.model.domain.dto.response.VideoInfoDto;
+import video.manage.model.dto.VideoBaseInfoDto;
+import video.manage.model.dto.response.VideoInfoDto;
 import video.services.video.UpdateVideoService;
 
 import java.util.List;

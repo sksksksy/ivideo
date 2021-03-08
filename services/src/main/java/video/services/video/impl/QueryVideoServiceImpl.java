@@ -2,8 +2,8 @@ package video.services.video.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
-import video.manage.model.domain.dto.request.BaseQuery;
-import video.manage.model.domain.entity.VideoEntity;
+import video.manage.model.dto.request.QueryVideo;
+import video.manage.model.entity.VideoEntity;
 import video.services.video.QueryVideoService;
 
 /**
@@ -11,6 +11,8 @@ import video.services.video.QueryVideoService;
  */
 @Service
 public class QueryVideoServiceImpl implements QueryVideoService {
+
+
     /**
      * 获取单个基本视频信息
      *
@@ -18,7 +20,7 @@ public class QueryVideoServiceImpl implements QueryVideoService {
      * @return
      */
     @Override
-    public VideoEntity getVideo(BaseQuery query) {
+    public VideoEntity getVideo(QueryVideo query) {
         return null;
     }
 
@@ -29,7 +31,7 @@ public class QueryVideoServiceImpl implements QueryVideoService {
      * @return
      */
     @Override
-    public Page<VideoEntity> getAllVideoOfPersonUp(BaseQuery query) {
+    public Page<VideoEntity> getAllVideoOfPersonUp(QueryVideo query) {
         return null;
     }
 
@@ -40,7 +42,7 @@ public class QueryVideoServiceImpl implements QueryVideoService {
      * @return
      */
     @Override
-    public Page<VideoEntity> getAllVideoOfView(BaseQuery query) {
+    public Page<VideoEntity> getAllVideoOfView(QueryVideo query) {
         return null;
     }
 
@@ -51,7 +53,7 @@ public class QueryVideoServiceImpl implements QueryVideoService {
      * @return
      */
     @Override
-    public Page<VideoEntity> searchVideoByName(BaseQuery query) {
+    public Page<VideoEntity> searchVideoByName(QueryVideo query) {
         return null;
     }
 }

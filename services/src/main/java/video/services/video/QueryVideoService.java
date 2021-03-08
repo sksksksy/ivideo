@@ -1,8 +1,9 @@
 package video.services.video;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import video.manage.model.domain.dto.request.BaseQuery;
-import video.manage.model.domain.entity.VideoEntity;
+import video.manage.model.dto.request.QueryBaseByKey;
+import video.manage.model.dto.request.QueryVideo;
+import video.manage.model.entity.VideoEntity;
 
 /**
  * 查询视频服务类
@@ -14,7 +15,7 @@ public interface QueryVideoService {
      * @param query
      * @return
      */
-    VideoEntity getVideo(BaseQuery query);
+    VideoEntity getVideo(QueryVideo query);
 
     /**
      * 查询个人上传的所有视频
@@ -22,7 +23,7 @@ public interface QueryVideoService {
      * @param query
      * @return
      */
-    Page<VideoEntity> getAllVideoOfPersonUp(BaseQuery query);
+    Page<VideoEntity> getAllVideoOfPersonUp(QueryVideo query);
 
     /**
      * 查询个人可以看到的所有视频并分页
@@ -30,7 +31,7 @@ public interface QueryVideoService {
      * @param query
      * @return
      */
-    Page<VideoEntity> getAllVideoOfView(BaseQuery query);
+    Page<VideoEntity> getAllVideoOfView(QueryVideo query);
 
     /**
      * 按名字搜索视频
@@ -38,5 +39,5 @@ public interface QueryVideoService {
      * @param query
      * @return
      */
-    Page<VideoEntity> searchVideoByName(BaseQuery query);
+    Page<VideoEntity> searchVideoByName(QueryVideo query);
 }

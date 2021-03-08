@@ -1,5 +1,7 @@
 package com.java.cache;
 
+import java.io.Serializable;
+
 /**
  * 缓存方法
  */
@@ -12,9 +14,9 @@ public interface CacheOfSelf {
      * @param <T>
      * @return
      */
-    <T> T getValue(Class<T> tClass, String key);
+    <T extends Serializable> T getValue(Class<T> tClass, String key);
 
-    <T> T getValueOrDefault(Class<T> tClass, String key, T defaultValue);
+    <T extends Serializable> T getValueOrDefault(Class<T> tClass, String key, T defaultValue);
 
     /**
      * 设置T类型的值
@@ -23,7 +25,7 @@ public interface CacheOfSelf {
      * @param val
      * @param <T>
      */
-    <T> void setKeyValue(String key, T val);
+    <T extends Serializable> void setKeyValue(String key, T val);
 
     /**
      * 设置T类型的值，有超时
@@ -33,6 +35,17 @@ public interface CacheOfSelf {
      * @param expired
      * @param <T>
      */
-    <T> void setKeyValue(String key, T val, int expired);
+    <T extends Serializable> void setKeyValue(String key, T val, int expired);
+    /**
+     * 获取String类型的值
+     * @param key
+     * @return
+     */
+    String getStringValue(String key);
 
+    String getStringValueOrDefault(String key, String defaultValue);
+
+    void setKeyStringValue(String key, String value);
+
+    void setKeyStringValue(String key, String value, int expired);
 }

@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UnitMonitorJob implements Runnable {
     @Override
     public void run() {
-        ICache cache = ICache.takeCache();
+        CacheOfSimple cache = CacheOfSimple.takeCache();
         //超时移除
         ConcurrentHashMap<String, List<Unit>> cacheMaps = cache.getCache();
         cacheMaps.forEach((k, v) -> {

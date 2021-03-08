@@ -1,7 +1,7 @@
 package video.services.video;
 
-import video.manage.model.domain.dto.VideoBaseInfoDto;
-import video.manage.model.domain.dto.response.VideoInfoDto;
+import video.manage.model.dto.VideoBaseInfoDto;
+import video.manage.model.dto.response.VideoInfoDto;
 
 import java.util.List;
 

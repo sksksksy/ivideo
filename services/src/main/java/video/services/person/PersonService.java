@@ -1,7 +1,7 @@
 package video.services.person;
 
-import video.manage.model.domain.dto.request.BaseQuery;
-import video.manage.model.domain.entity.PersonInfoEntity;
+import video.manage.model.dto.request.QueryBaseByKey;
+import video.manage.model.entity.PersonInfoEntity;
 
 /**
  * 个人服务
@@ -12,5 +12,5 @@ public interface PersonService {
      * @param query
      * @return
      */
-    PersonInfoEntity getPerson(BaseQuery query);
+    PersonInfoEntity getPerson(QueryBaseByKey query);
 }
