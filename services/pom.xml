@@ -23,6 +23,17 @@
             <version>1.0.1</version>
             <scope>compile</scope>
         </dependency>
+        <!--        糊涂工具包的缓存工具-->
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-db</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.5.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -1,20 +1,28 @@
 package video.info.service.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java.result.ResultS;
+import github.zhp.core.result.ResultS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import video.manage.model.dto.request.QueryVideo;
+import video.info.service.utils.CommonUtilInModule;
+import video.manage.model.dto.request.QueryVideoDto;
 import video.manage.model.entity.VideoEntity;
-import video.services.video.QueryVideoService;
+import video.services.videomange.QueryVideoService;
 
+/**
+ * 视频管理控制类
+ */
 @RestController
 public class VideoManageController {
-    @Autowired
     QueryVideoService queryVideo;
+
+    @Autowired(required = false)
+    public void setQueryVideo(QueryVideoService queryVideo) {
+        this.queryVideo = queryVideo;
+    }
 
     /**
      * 查询个人上传的所有视频
@@ -22,7 +30,8 @@ public class VideoManageController {
      * @return
      */
     @RequestMapping(value = "allVideoOfPersonUp", method = RequestMethod.GET)
-    ResultS<Page<VideoEntity>> queryAllVideoOfPersonUp(@RequestBody(required = false) QueryVideo query) {
+    ResultS<Page<VideoEntity>> queryAllVideoOfPersonUp(@RequestBody(required = false) QueryVideoDto query) {
+        CommonUtilInModule.checkQueryVideo(query);
         Page<VideoEntity> videos = queryVideo.getAllVideoOfPersonUp(query);
         return ResultS.success(videos);
     }
@@ -33,7 +42,8 @@ public class VideoManageController {
      * @return
      */
     @RequestMapping(value = "allVideoOfView", method = RequestMethod.GET)
-    ResultS<Page<VideoEntity>> queryAllVideoOfView(@RequestBody(required = false) QueryVideo query) {
+    ResultS<Page<VideoEntity>> queryAllVideoOfView(@RequestBody(required = false) QueryVideoDto query) {
+        CommonUtilInModule.checkQueryVideo(query);
         Page<VideoEntity> views = queryVideo.getAllVideoOfView(query);
         return ResultS.success(views);
     }
@@ -45,7 +55,8 @@ public class VideoManageController {
      * @return
      */
     @RequestMapping(value = "searchVideoByName", method = RequestMethod.GET)
-    ResultS<Page<VideoEntity>> queryVideo(@RequestBody(required = false) QueryVideo query) {
+    ResultS<Page<VideoEntity>> queryVideo(@RequestBody(required = false) QueryVideoDto query) {
+        CommonUtilInModule.checkQueryVideo(query);
         queryVideo.searchVideoByName(query);
         return ResultS.success();
     }

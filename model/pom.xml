@@ -22,6 +22,15 @@
             <artifactId>mybatis-plus</artifactId>
             <version>3.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>github.zhp</groupId>
+            <artifactId>ztools-spring</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

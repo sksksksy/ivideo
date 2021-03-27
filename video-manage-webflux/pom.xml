@@ -21,7 +21,7 @@
             <groupId>github.zhp</groupId>
             <artifactId>model</artifactId>
             <version>1.0.1</version>
-<!--            <scope>compile</scope>-->
+            <!--            <scope>compile</scope>-->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -29,7 +29,12 @@
         </dependency>
         <dependency>
             <groupId>github.zhp</groupId>
-            <artifactId>zutil</artifactId>
+            <artifactId>ztools-core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>github.zhp</groupId>
+            <artifactId>ztools-spring</artifactId>
             <version>1.0.1</version>
         </dependency>
         <dependency>

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-import video.manage.model.dto.request.QueryVideo;
+import video.manage.model.dto.request.QueryVideoDto;
 import video.manage.model.entity.VideoEntity;
-import video.services.video.QueryVideoService;
+import video.services.videomange.QueryVideoService;
 
 @Component
 public class LoginHandler {
@@ -24,7 +24,7 @@ public class LoginHandler {
      * @return
      */
     public Mono<ServerResponse> login(ServerRequest request) {
-        QueryVideo query = new QueryVideo();
+        QueryVideoDto query = new QueryVideoDto();
         RequestTools.getParameter(query, name -> request.queryParam(name).get());
         VideoEntity video = videoService.getVideo(query);
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(Mono.just(ResultS.success(video)), ResultS.class);
