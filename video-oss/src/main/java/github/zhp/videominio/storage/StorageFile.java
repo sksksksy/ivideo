@@ -15,8 +15,13 @@ import java.io.InputStream;
  */
 @Component
 public class StorageFile implements OssWriter {
+
+    private OssSetting minIoSetting;
+
     @Autowired
-    OssSetting minIoSetting;
+    StorageFile(OssSetting ossSetting) {
+        this.minIoSetting = ossSetting;
+    }
 
     /**
      * 上传文件至oss

@@ -18,11 +18,11 @@ public class MinioReader implements OssReader {
     OssSetting setting;
     //当该Component常驻内存时，不需要重复new一个新的client,有助于提升性能
     //线程安全
-    ThreadLocal<MinioClient> client = new InheritableThreadLocal<>();
+    ThreadLocal<MinioClient> client = new ThreadLocal<>();
 
     @Autowired
     MinioReader(OssSetting set) {
-        client.set(MinIoHelper.getClient(set));
+//        client.set(MinIoHelper.getClient(set));
         this.setting = setting;
     }
 
